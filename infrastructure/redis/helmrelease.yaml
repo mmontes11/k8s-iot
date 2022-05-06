@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mongodb
+spec:
+  releaseName: mongodb
+  chart:
+    spec:
+      chart: mongodb
+      sourceRef:
+        kind: HelmRepository
+        name: mmontes
+        namespace: flux-system
+  interval: 5m
+  values:
+    image:
+      repository: redis
+      pullPolicy: IfNotPresent
+      tag: 6.2.6-alpine3.15
+
+    storage:
+      size: 300Mi
+      className: local-path
+      accessModes:
+        - "ReadWriteOnce"
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 250Mi
+      limits:
+        cpu: 300m
+        memory: 500Mi
+
+    nodeSelector:
+      node.mmontes.io/type: compute
+
+    prometheus-redis-exporter:
+      image:
+        repository: oliver006/redis_exporter
+        tag: v1.37.0
+        pullPolicy: IfNotPresent
+      service:
+        type: ClusterIP
+        port: 9121
+      redisAddress: redis://redis:6379
+      serviceMonitor:
+        enabled: true
+        interval: 30s
+        timeout: 10s
+        labels:
+      release: kube-prometheus-stack
