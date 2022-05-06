@@ -1,0 +1,53 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mongodb
+spec:
+  releaseName: mongodb
+  chart:
+    spec:
+      chart: mongodb
+      sourceRef:
+        kind: HelmRepository
+        name: mmontes
+        namespace: flux-system
+  interval: 5m
+  values:
+    image:
+      repository: mongo
+      pullPolicy: IfNotPresent
+      tag: 4.4.13
+
+    storage:
+      size: 8Gi
+      className: local-path
+      accessModes:
+        - "ReadWriteOnce"
+
+    backup:
+      enabled: true
+      cron: "0 1 * * *"
+      storage:
+        size: 8Gi
+        className: nfs
+        accessModes:
+          - "ReadWriteOnce"
+
+    resources:
+      requests:
+        cpu: 500m
+        memory: 300Mi
+      limits:
+        cpu: 1
+        memory: 700Mi
+
+    nodeSelector:
+      node.mmontes.io/type: compute
+
+    prometheus-mongodb-exporter:
+      mongodb:
+        uri: "mongodb://mongodb:27017"
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: kube-prometheus-stack
