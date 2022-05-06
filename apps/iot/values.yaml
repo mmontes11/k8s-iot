@@ -1,0 +1,211 @@
+nameOverride: iot
+fullnameOverride: iot
+
+secretNameOverride: iot
+
+back:
+  image:
+    repository: mmontes11/iot-back
+    pullPolicy: IfNotPresent
+    tag: "v3.5.1"
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: "128Mi"
+    limits:
+      cpu: 300m
+      memory: "512Mi"
+  replicaCount: 2
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 50
+
+  debug: true
+  cache:
+    defaultExpirationSeconds: 10
+    statsExpirationSeconds: 10
+  jwtExpiration: 1d
+  maxDefaultNearbyDistanceMetres: 10000
+  maxNumThingsResults: 10
+  mongoUrl: mongodb://mongodb:27017/IoT
+  redisUrl: redis://redis:6379
+  mqtt:
+    host: iot-mosquitto
+    port: 1883
+    url: mqtt://iot-mosquitto:1883
+  thing:
+    port: 80
+    url: http://iot-thing
+
+biot:
+  image:
+    repository: mmontes11/iot-biot
+    pullPolicy: IfNotPresent
+    tag: "v3.5.1"
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: "128Mi"
+    limits:
+      cpu: 300m
+      memory: "512Mi"
+
+  debug: true
+  backUrl: http://iot-back/api
+  growthRate:
+    highAbsoluteThreshold: 0.4
+    moderateAbsoluteThreshold: 0.6
+  temperature:
+    highThreshold: 25
+    lowThreshold: 5
+    prefix: temperature
+  humidity:
+    highThreshold: 90
+    lowThreshold: 30
+    prefix: humidity
+  topics:
+    measurement: measurement
+    measurementChange: measurement-change
+
+front:
+  image:
+    repository: mmontes11/iot-front
+    pullPolicy: Always
+    tag: "v3.5.1"
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: "128Mi"
+    limits:
+      cpu: 300m
+      memory: "512Mi"
+  replicaCount: 2
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 50
+  nodeSelector: {}
+
+thing:
+  enabled: true
+
+  image:
+    repository: mmontes11/iot-thing
+    pullPolicy: IfNotPresent
+    tag: "v3.5.1"
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: "32Mi"
+    limits:
+      cpu: 200m
+      memory: "128Mi"
+
+  debug: true
+
+worker:
+  image:
+    repository: mmontes11/iot-worker
+    pullPolicy: IfNotPresent
+    tag: "v3.5.1"
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: "128Mi"
+    limits:
+      cpu: 300m
+      memory: "512Mi"
+
+  debug: true
+  topics:
+    measurement: measurement
+    measurementChange: measurement-change
+    event: event
+  measurementChange:
+    growthRateThreshold: 0.2
+    pastIntervalHours: 1
+  mongo:
+    url: mongodb://mongodb:27017
+    db: IoT
+  mqtt:
+    host: iot-mosquitto
+    port: 1883
+  biotUrl: http://iot-biot/api
+
+mosquitto:
+  image:
+    repository: mmontes11/iot-mosquitto
+    pullPolicy: IfNotPresent
+    tag: v3.5.1
+
+  service:
+    type: ClusterIP
+    port: 1883
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: "128Mi"
+    limits:
+      cpu: 300m
+      memory: "512Mi"
+
+nginx:
+  image:
+    repository: mmontes11/iot-nginx
+    pullPolicy: IfNotPresent
+    tag: v3.5.1
+
+  ingressRoute:
+    host: iot.mmontes-dev.duckdns.org
+    entryPoints:
+      - websecure
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: "128Mi"
+    limits:
+      cpu: 300m
+      memory: "512Mi"
+  replicaCount: 1
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 50

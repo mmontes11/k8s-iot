@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: iot
+spec:
+  chart:
+    spec:
+      chart: iot
+      sourceRef:
+        kind: HelmRepository
+        name: iot
+      version: "0.1.0"
+  interval: 1h0m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: iot
