@@ -4,6 +4,9 @@ metadata:
   name: iot
   namespace: iot
 spec:
+  dependsOn:
+    - name: mongodb
+    - name: redis
   interval: 5m
   sourceRef:
     kind: GitRepository
