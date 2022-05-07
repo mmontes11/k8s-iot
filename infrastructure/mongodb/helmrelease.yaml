@@ -26,7 +26,7 @@ spec:
 
     backup:
       enabled: true
-      cron: "0 1 * * *"
+      cron: "0 2 * * *"
       storage:
         size: 8Gi
         className: nfs
