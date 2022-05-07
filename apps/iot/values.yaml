@@ -95,14 +95,9 @@ front:
     limits:
       cpu: 300m
       memory: "512Mi"
-  replicaCount: 2
+  replicaCount: 1
   autoscaling:
-    enabled: true
-    minReplicas: 1
-    maxReplicas: 4
-    targetCPUUtilizationPercentage: 50
-    targetMemoryUtilizationPercentage: 50
-  nodeSelector: {}
+    enabled: false
 
 thing:
   enabled: true
@@ -202,8 +197,4 @@ nginx:
       memory: "512Mi"
   replicaCount: 1
   autoscaling:
-    enabled: true
-    minReplicas: 1
-    maxReplicas: 4
-    targetCPUUtilizationPercentage: 50
-    targetMemoryUtilizationPercentage: 50
+    enabled: false
