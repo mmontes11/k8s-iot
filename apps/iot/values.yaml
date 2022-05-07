@@ -27,6 +27,8 @@ back:
     maxReplicas: 8
     targetCPUUtilizationPercentage: 50
     targetMemoryUtilizationPercentage: 50
+  nodeSelector:
+    node.mmontes.io/type: compute
 
   debug: true
   cache:
