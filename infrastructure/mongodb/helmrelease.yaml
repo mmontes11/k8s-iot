@@ -42,9 +42,6 @@ spec:
         cpu: 1
         memory: 700Mi
 
-    nodeSelector:
-      node.mmontes.io/type: compute
-
     prometheus-mongodb-exporter:
       mongodb:
         uri: "mongodb://mongodb:27017"

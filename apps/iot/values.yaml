@@ -23,8 +23,6 @@ back:
   replicaCount: 1
   autoscaling:
     enabled: false
-  nodeSelector:
-    node.mmontes.io/type: compute
 
   debug: true
   cache:
@@ -179,10 +177,12 @@ nginx:
     pullPolicy: IfNotPresent
     tag: v3.5.1
 
-  ingressRoute:
-    host: iot.mmontes-dev.duckdns.org
-    entryPoints:
-      - websecure
+  httpRoute:
+    enabled: true
+    host: iot.mmontes.duckdns.org
+    gatewayRef:
+      name: traefik
+      namespace: networking
 
   service:
     type: ClusterIP

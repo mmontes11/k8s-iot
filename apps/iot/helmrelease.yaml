@@ -10,7 +10,7 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.1.0"
+      version: "0.2.0"
   interval: 1h0m0s
   valuesFrom:
     - kind: ConfigMap

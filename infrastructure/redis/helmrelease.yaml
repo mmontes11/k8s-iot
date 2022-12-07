@@ -33,9 +33,6 @@ spec:
         cpu: 300m
         memory: 500Mi
 
-    nodeSelector:
-      node.mmontes.io/type: compute
-
     prometheus-redis-exporter:
       image:
         repository: oliver006/redis_exporter
