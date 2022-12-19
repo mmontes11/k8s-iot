@@ -179,9 +179,9 @@ nginx:
 
   httpRoute:
     enabled: true
-    host: iot.mmontes.duckdns.org
+    host: iot.internal.mmontes.duckdns.org
     gatewayRef:
-      name: traefik
+      name: traefik-internal
       namespace: networking
 
   service:
