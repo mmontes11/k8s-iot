@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.3.0"
+      version: "0.4.1"
   interval: 5m
   values:
     image:
@@ -28,11 +28,10 @@ spec:
     backup:
       enabled: true
       cron: "0 1 * * *"
-      storage:
-        size: 8Gi
-        className: nfs
-        accessModes:
-          - "ReadWriteOnce"
+      volume:
+        nfs:
+          server: nas.local
+          path: /volume1/iot/mongodb
 
     resources:
       requests:
