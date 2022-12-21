@@ -7,7 +7,7 @@ back:
   image:
     repository: mmontes11/iot-back
     pullPolicy: IfNotPresent
-    tag: "v3.6.0"
+    tag: "v3.6.1"
 
   service:
     type: ClusterIP
@@ -37,8 +37,6 @@ back:
     host: iot-mosquitto
     port: 1883
     url: mqtt://iot-mosquitto:1883
-  thing:
-    port: 8080
 
 biot:
   image:
@@ -97,7 +95,7 @@ front:
     enabled: false
 
 thing:
-  enabled: true
+  enabled: false
 
   image:
     repository: mmontes11/iot-thing
