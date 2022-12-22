@@ -7,7 +7,7 @@ back:
   image:
     repository: mmontes11/iot-back
     pullPolicy: IfNotPresent
-    tag: "v3.6.1"
+    tag: "v3.7.0"
 
   service:
     type: ClusterIP
