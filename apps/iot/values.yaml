@@ -20,7 +20,10 @@ back:
     limits:
       cpu: 300m
       memory: "512Mi"
-  replicaCount: 2
+  ## TODO: session affinity is required for websocket connections but it is not working
+  ## with the current networking model:
+  ## Metallb LB -> Nginx service -> Back service (sessionAffinity: ClientIP)
+  replicaCount: 1
   autoscaling:
     enabled: false
 
