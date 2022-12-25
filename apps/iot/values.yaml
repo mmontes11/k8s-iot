@@ -7,7 +7,6 @@ back:
   image:
     repository: mmontes11/iot-back
     pullPolicy: IfNotPresent
-    tag: "v3.7.0"
 
   service:
     type: ClusterIP
@@ -20,10 +19,8 @@ back:
     limits:
       cpu: 300m
       memory: "512Mi"
-  ## TODO: session affinity is required for websocket connections but it is not working
-  ## with the current networking model:
-  ## Metallb LB -> Nginx service -> Back service (sessionAffinity: ClientIP)
-  replicaCount: 1
+
+  replicaCount: 2
   autoscaling:
     enabled: false
 
@@ -45,7 +42,6 @@ biot:
   image:
     repository: mmontes11/iot-biot
     pullPolicy: IfNotPresent
-    tag: "v3.5.1"
 
   service:
     type: ClusterIP
@@ -80,7 +76,6 @@ front:
   image:
     repository: mmontes11/iot-front
     pullPolicy: Always
-    tag: "v3.5.1"
 
   service:
     type: ClusterIP
@@ -103,7 +98,6 @@ thing:
   image:
     repository: mmontes11/iot-thing
     pullPolicy: IfNotPresent
-    tag: "v3.5.1"
 
   service:
     type: ClusterIP
@@ -123,7 +117,6 @@ worker:
   image:
     repository: mmontes11/iot-worker
     pullPolicy: IfNotPresent
-    tag: "v3.5.1"
 
   service:
     type: ClusterIP
@@ -157,7 +150,6 @@ mosquitto:
   image:
     repository: mmontes11/iot-mosquitto
     pullPolicy: IfNotPresent
-    tag: v3.5.1
 
   service:
     type: ClusterIP
@@ -175,7 +167,6 @@ nginx:
   image:
     repository: mmontes11/iot-nginx
     pullPolicy: IfNotPresent
-    tag: v3.5.1
 
   httpRoute:
     enabled: true
