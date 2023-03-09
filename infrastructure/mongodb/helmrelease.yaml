@@ -36,6 +36,20 @@ spec:
         pvc:
           enabled: false
 
+    livenessProbe:
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 30
+      successThreshold: 1
+      timeoutSeconds: 5
+
+    readinessProbe:
+      failureThreshold: 5
+      initialDelaySeconds: 30
+      periodSeconds: 30
+      successThreshold: 1
+      timeoutSeconds: 5
+
     resources:
       requests:
         cpu: 500m
