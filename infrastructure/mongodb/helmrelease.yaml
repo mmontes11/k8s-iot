@@ -55,7 +55,6 @@ spec:
         cpu: 500m
         memory: 700Mi
       limits:
-        cpu: 500m
         memory: 700Mi
 
     prometheus-mongodb-exporter:
