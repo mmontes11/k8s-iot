@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.4.2"
+      version: "0.5.0"
   interval: 5m
   values:
     image:
@@ -56,6 +56,10 @@ spec:
         memory: 700Mi
       limits:
         memory: 700Mi
+
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 1
 
     prometheus-mongodb-exporter:
       mongodb:
