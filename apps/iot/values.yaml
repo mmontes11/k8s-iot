@@ -5,7 +5,7 @@ secretNameOverride: iot
 
 back:
   image:
-    repository: mmontes11/iot-back
+    repository: ghcr.io/mmontes11/iot-back
     pullPolicy: IfNotPresent
 
   service:
@@ -40,7 +40,7 @@ back:
 
 biot:
   image:
-    repository: mmontes11/iot-biot
+    repository: ghcr.io/mmontes11/iot-biot
     pullPolicy: IfNotPresent
 
   service:
@@ -74,7 +74,7 @@ biot:
 
 front:
   image:
-    repository: mmontes11/iot-front
+    repository: ghcr.io/mmontes11/iot-front
     pullPolicy: Always
 
   service:
@@ -96,7 +96,7 @@ thing:
   enabled: false
 
   image:
-    repository: mmontes11/iot-thing
+    repository: ghcr.io/mmontes11/iot-thing
     pullPolicy: IfNotPresent
 
   service:
@@ -115,7 +115,7 @@ thing:
 
 worker:
   image:
-    repository: mmontes11/iot-worker
+    repository: ghcr.io/mmontes11/iot-worker
     pullPolicy: IfNotPresent
 
   service:
@@ -148,7 +148,7 @@ worker:
 
 mosquitto:
   image:
-    repository: mmontes11/iot-mosquitto
+    repository: ghcr.io/mmontes11/iot-mosquitto
     pullPolicy: IfNotPresent
 
   service:
@@ -165,7 +165,7 @@ mosquitto:
 
 nginx:
   image:
-    repository: mmontes11/iot-nginx
+    repository: ghcr.io/mmontes11/iot-nginx
     pullPolicy: IfNotPresent
 
   httpRoute:
