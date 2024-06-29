@@ -31,7 +31,7 @@ spec:
       volume:
         nfs:
           enabled: true
-          server: 10.0.0.40
+          server: 10.0.0.50
           path: /volume1/iot/mongodb
         pvc:
           enabled: false
