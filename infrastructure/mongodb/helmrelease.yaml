@@ -66,5 +66,3 @@ spec:
         uri: "mongodb://mongodb:27017"
       serviceMonitor:
         enabled: true
-        additionalLabels:
-          release: kube-prometheus-stack

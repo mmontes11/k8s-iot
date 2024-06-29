@@ -47,4 +47,3 @@ spec:
         interval: 30s
         timeout: 10s
         labels:
-      release: kube-prometheus-stack
