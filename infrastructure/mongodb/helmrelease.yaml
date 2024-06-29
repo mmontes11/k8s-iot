@@ -31,7 +31,7 @@ spec:
       volume:
         nfs:
           enabled: true
-          server: nas.local
+          server: 10.0.0.40
           path: /volume1/iot/mongodb
         pvc:
           enabled: false
