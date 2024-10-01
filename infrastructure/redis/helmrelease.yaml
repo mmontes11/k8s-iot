@@ -21,7 +21,7 @@ spec:
 
     storage:
       size: 300Mi
-      className: local-path
+      className: rook-ceph
       accessModes:
         - "ReadWriteOnce"
 
