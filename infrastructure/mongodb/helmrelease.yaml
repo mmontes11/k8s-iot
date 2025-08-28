@@ -27,7 +27,7 @@ spec:
 
     backup:
       enabled: true
-      cron: "0 1 * * *"
+      cron: "0 21 * * *"
       volume:
         nfs:
           enabled: true
