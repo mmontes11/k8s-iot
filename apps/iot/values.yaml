@@ -20,7 +20,7 @@ back:
       cpu: 300m
       memory: "512Mi"
 
-  replicaCount: 2
+  replicaCount: 1
   autoscaling:
     enabled: false
 
