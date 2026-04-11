@@ -32,7 +32,7 @@ back:
   maxDefaultNearbyDistanceMetres: 10000
   maxNumThingsResults: 10
   mongoUrl: mongodb://mongodb:27017/IoT
-  redisUrl: redis://redis:6379
+  redisUrl: redis://redis.database.svc.cluster.local:6379/1
   mqtt:
     host: iot-mosquitto
     port: 1883
